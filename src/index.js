@@ -26,8 +26,8 @@ weatherButton.addEventListener("click", () => {
         .then(data => {
             const longitude = (data[0].lon);
             const latitude = (data[0].lat);
-            
-            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`)
+
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&temperature_unit=fahrenheit`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
