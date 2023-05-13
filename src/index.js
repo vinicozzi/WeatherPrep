@@ -31,11 +31,7 @@ weatherButton.addEventListener("click", () => {
             .then(response => response.json())
             .then(data => {
             
-                console.log(data);
-
                 const values = Object.values((Object.values(data))[8]); 
-
-                console.log(values);
 
                 let dailyArray = [];
 
@@ -50,13 +46,31 @@ weatherButton.addEventListener("click", () => {
                 const apparent_max = dailyArray[4];
                 const apparent_min = dailyArray[5];
 
-                document.getElementById("date").innerHTML = date;
-                document.getElementById("weathercode").innerHTML = weathercode;
-                document.getElementById("temp-max").innerHTML = temp_max;
-                document.getElementById("temp-min").innerHTML = temp_min;
-                document.getElementById("apparent-max").innerHTML = apparent_max;
-                document.getElementById("apparent-min").innerHTML = apparent_min;
-
+                // Weather codes
+                const weatherCodes = [
+                    { range: [0], description: 'Clear Sky' },
+                    { range: [1, 2, 3], description: 'Mainly clear, partly cloudy, and overcast' },
+                    { range: [45, 48], description: 'Fog and depositing rime fog' },
+                    { range: [51, 53, 55], description: 'Drizzle: Light, moderate, and dense intensity' },
+                    { range: [56, 57], description: 'Freezing Drizzle: Light and dense intensity' },
+                    { range: [61, 63, 65], description: 'Rain: Slight, moderate and heavy intensity' },
+                    { range: [66, 67], description: 'Freezing Rain: Light and heavy intensity' },
+                    { range: [71, 73, 75], description: 'Snow fall: Slight, moderate, and heavy intensity' },
+                    { range: [77], description: 'Snow grains' },
+                    { range: [80, 81, 82], description: 'Rain showers: Slight, moderate, and violent' },
+                    { range: [85, 86], description: 'Snow showers slight and heavy' },
+                ];
+  
+                    // Find weather code description
+                    const weatherCode = weatherCodes.find(({ range }) => range.includes(weathercode));
+                    document.getElementById('weathercode').innerHTML = weatherCode ? weatherCode.description : '';
+  
+                    // Update weather data
+                    document.querySelector('#date').innerHTML = date;
+                    document.getElementById('temp-max').innerHTML = temp_max;
+                    document.getElementById('temp-min').innerHTML = temp_min;
+                    document.getElementById('apparent-max').innerHTML = apparent_max;
+                    document.getElementById('apparent-min').innerHTML = apparent_min;
 
             })
             .catch(error => {
