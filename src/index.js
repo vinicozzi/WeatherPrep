@@ -30,20 +30,45 @@ weatherButton.addEventListener("click", () => {
             fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`)
             .then(response => response.json())
             .then(data => {
+            
                 console.log(data);
+
+                const values = Object.values((Object.values(data))[8]); 
+
+                console.log(values);
+
+                let dailyArray = [];
+
+               for (let i = 0; i < values.length; i++) {
+                    dailyArray = dailyArray.concat(values[i][0]);
+                }
+                
+                const date = dailyArray[0];
+                const weathercode = dailyArray[1];
+                const temp_max = dailyArray[2];
+                const temp_min = dailyArray[3];
+                const apparent_max = dailyArray[4];
+                const apparent_min = dailyArray[5];
+
+                document.getElementById("date").innerHTML = date;
+                document.getElementById("weathercode").innerHTML = weathercode;
+                document.getElementById("temp-max").innerHTML = temp_max;
+                document.getElementById("temp-min").innerHTML = temp_min;
+                document.getElementById("apparent-max").innerHTML = apparent_max;
+                document.getElementById("apparent-min").innerHTML = apparent_min;
+
+
             })
             .catch(error => {
                 console.error(error);
             });
-            // console.log(`Longitude: ${longitude}, Latitude: ${latitude}`);
+
         })
         .catch(error => {
             console.error(error);
         });
-
-  
-
 });
+
 
 // async function presentLongAndLat(address) {
 //     const url = `https://geocode.maps.co/search?city={city}`

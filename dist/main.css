@@ -1,4 +1,88 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+body {
+  background-color: #F4F6F8;
+  font-family: "Roboto", sans-serif;
+}
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+#question {
+  font-family: "Times New Roman", Times, serif;
+  font-style: oblique;
+  font-weight: 800;
+  text-align: center;
+  margin-right: 100px;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+#city-input {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  width: 300px;
+  margin-right: -8px;
+}
+
+#weather-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  background-color: #2e5bff;
+  color: white;
+  cursor: pointer;
+}
+
+#weather-data {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-top: 50px;
+  padding: 16px;
+  text-align: left;
+  display: inline-block;
+  margin-left: 600px;
+}
+
+#weather-data p {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+#weather-data span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+  #city-input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  #weather-button {
+    width: 100%;
+  }
+}
