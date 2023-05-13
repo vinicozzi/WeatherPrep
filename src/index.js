@@ -30,7 +30,7 @@ weatherButton.addEventListener("click", () => {
             fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`)
             .then(response => response.json())
             .then(data => {
-            
+                console.log(data);
                 const values = Object.values((Object.values(data))[8]); 
 
                 let dailyArray = [];
