@@ -17,9 +17,9 @@
 
 // const city = document.querySelector('#city-input');
 const cityInput = document.querySelector('#city-input');
-console.log(cityInput);
+// console.log(cityInput);
 const stateInput = document.querySelector('#state-input');
-console.log(stateInput);
+// console.log(stateInput);
 const weatherButton = document.querySelector('#weather-button');
 // const state = document.querySelector('#state-input')
 
@@ -27,13 +27,10 @@ weatherButton.addEventListener("click", () => {
 
     const city = encodeURIComponent(cityInput.value).split('%20').join(' ');
     const state = encodeURIComponent(stateInput.value).split('%20').join(' ');
-
     // city
     //     "West%20Islip"
     // state
     //     "New%20York"
-
-    debugger 
     fetch(`https://geocode.maps.co/search?city=${city}&state=${state}`)
         .then(response => response.json())
         .then(data => {
