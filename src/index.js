@@ -14,16 +14,26 @@
 //   });
 // const city = 'West Islip';
 // const url = ``;
-const city = document.querySelector('.city-input')
-fetch(`https://geocode.maps.co/search?city=${encodeURIComponent(city)}`)
-    .then(response => response.json())
-    .then(data => {
-        const longitude = (data[0].lon);
-        const latitude = (data[0].lat);
-    })
+
+const city = document.querySelector('#city-input');
+const weatherButton = document.querySelector('#weather-button');
+
+weatherButton.addEventListener("click", () => {
+    const cityValue = encodeURIComponent(city.value);
+    fetch(`https://geocode.maps.co/search?city=${cityValue}`)
+        .then(response => response.json())
+        .then(data => {
+            const longitude = (data[0].lon);
+            const latitude = (data[0].lat);
+            console.log(`Longitude: ${longitude}, Latitude: ${latitude}`);
+        })
         .catch(error => {
             console.error(error);
         });
+});
+
+
+
 // async function presentLongAndLat(address) {
 //     const url = `https://geocode.maps.co/search?city={city}`
 //     const response = await fetch(url);
