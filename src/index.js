@@ -15,22 +15,36 @@
 // const city = 'West Islip';
 // const url = ``;
 
-const city = document.querySelector('#city-input');
+// const city = document.querySelector('#city-input');
+const cityInput = document.querySelector('#city-input');
+console.log(cityInput);
+const stateInput = document.querySelector('#state-input');
+console.log(stateInput);
 const weatherButton = document.querySelector('#weather-button');
+// const state = document.querySelector('#state-input')
 
 weatherButton.addEventListener("click", () => {
 
-    const cityValue = encodeURIComponent(city.value);
-    fetch(`https://geocode.maps.co/search?city=${cityValue}`)
+    const city = encodeURIComponent(cityInput.value).split('%20').join(' ');
+    const state = encodeURIComponent(stateInput.value).split('%20').join(' ');
+
+    // city
+    //     "West%20Islip"
+    // state
+    //     "New%20York"
+
+    debugger 
+    fetch(`https://geocode.maps.co/search?city=${city}&state=${state}`)
         .then(response => response.json())
         .then(data => {
+            // console.log(data);
             const longitude = (data[0].lon);
             const latitude = (data[0].lat);
 
             fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 const values = Object.values((Object.values(data))[8]); 
 
                 let dailyArray = [];
