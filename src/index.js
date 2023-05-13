@@ -19,20 +19,29 @@ const city = document.querySelector('#city-input');
 const weatherButton = document.querySelector('#weather-button');
 
 weatherButton.addEventListener("click", () => {
+
     const cityValue = encodeURIComponent(city.value);
     fetch(`https://geocode.maps.co/search?city=${cityValue}`)
         .then(response => response.json())
         .then(data => {
             const longitude = (data[0].lon);
             const latitude = (data[0].lat);
-            console.log(`Longitude: ${longitude}, Latitude: ${latitude}`);
+            // console.log(`Longitude: ${longitude}, Latitude: ${latitude}`);
         })
         .catch(error => {
             console.error(error);
         });
+
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
 });
-
-
 
 // async function presentLongAndLat(address) {
 //     const url = `https://geocode.maps.co/search?city={city}`
