@@ -26,20 +26,22 @@ weatherButton.addEventListener("click", () => {
         .then(data => {
             const longitude = (data[0].lon);
             const latitude = (data[0].lat);
+            
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
             // console.log(`Longitude: ${longitude}, Latitude: ${latitude}`);
         })
         .catch(error => {
             console.error(error);
         });
 
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+  
 
 });
 
